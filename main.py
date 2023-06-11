@@ -33,6 +33,8 @@ coordenadas = []
 tela.fill(branco)
 tela.blit(fundo,(0,0))
 
+criarBaseDados()
+
 while running: 
     for event in pygame.event.get():  
         if event.type==pygame.MOUSEBUTTONUP:
@@ -48,26 +50,28 @@ while running:
           estrelas = estrelas +1 
           coordenadas.append(coordenada)  
           pygame.draw.circle(tela, branco,(coordenada), 5) 
-          print(item) 
-          
-             
+          print(item)     
               
               
           texto=font.render(item, True, (branco))
           tela.blit(texto,(coordenada))                
           if estrelas>1:
               pygame.draw.line(tela, branco, (coordenadas[-2]),(coordenadas[-1]),2)
-              
-         
+            
+       
+        if event.type== pygame.KEYDOWN and event.key == pygame.K_F12:
+            tela.blit(fundo,(0,0))
+            estrelas=0
 
-          
-          
 
         if event.type == pygame.QUIT:
             running = False
         elif event.type== pygame.KEYDOWN and event.key == pygame.K_ESCAPE:  
             running= False
     
+
+
+
      
     texto = font.render("Pressione F10 para Salvar os Pontos", True, (branco))
     tela.blit(texto,(10,10))
@@ -75,16 +79,6 @@ while running:
     tela.blit(texto2,(10,30))
     texto3 = font.render("Pressione F12 para Deletar os Pontos", True, (branco))
     tela.blit(texto3,(10,50))
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     
     
