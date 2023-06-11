@@ -4,8 +4,8 @@ import winsound
 import time
 from tkinter import simpledialog
 pygame.init()
-#pygame.mixer.music.load("Space_Machine_Power.mp3")
-#pygame.mixer.music.play(-1)
+pygame.mixer.music.load("Space_Machine_Power.mp3")
+pygame.mixer.music.play(-1)
 
 pygame.font.init()
 font = pygame.font.Font(None, 30)
