@@ -63,8 +63,6 @@ while running:
             tela.blit(fundo,(0,0))
             estrelas=0
 
-        if event.type== pygame.KEYDOWN and event.key == pygame.K_F10:
-            
 
         if event.type == pygame.QUIT:
             running = False
