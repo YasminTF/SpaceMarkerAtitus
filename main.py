@@ -3,6 +3,7 @@ import pygame
 import winsound 
 import time
 from tkinter import simpledialog
+
 pygame.init()
 pygame.mixer.music.load("Space_Machine_Power.mp3")
 pygame.mixer.music.play(-1)
@@ -29,6 +30,12 @@ running = True
 estrelas = 0
 coordenada = []
 coordenadas = []
+nomeEstrela=[]
+
+coordenadaEnome=[]
+
+dicionario = {coordenadaEnome[i]: coordenadaEnome[i+1] for i in range(0, len(coordenadaEnome), 2)}
+
 
 tela.fill(branco)
 tela.blit(fundo,(0,0))
@@ -48,10 +55,17 @@ while running:
           
 
           estrelas = estrelas +1 
-          coordenadas.append(coordenada)  
+          coordenadas.append(coordenada)
+          nomeEstrela.append(item) 
+          coordenadaEnome.append(coordenada)
+          coordenadaEnome.append(item) 
+
           pygame.draw.circle(tela, branco,(coordenada), 5) 
-          print(item)     
-              
+          print(item)
+          print(nomeEstrela)     
+          print(coordenadas)
+          
+          print(dicionario)    
               
           texto=font.render(item, True, (branco))
           tela.blit(texto,(coordenada))                
@@ -59,13 +73,40 @@ while running:
               pygame.draw.line(tela, branco, (coordenadas[-2]),(coordenadas[-1]),2)
             
        
+        
+
+        if event.type== pygame.KEYDOWN and event.key == pygame.K_F10:
+            dicionario = {coordenadaEnome[i]: coordenadaEnome[i+1] for i in range(0, len(coordenadaEnome), 2)}
+            print(dicionario)
+            arquivo = open('banco_dados.txt','a')
+            arquivo.write(str(dicionario))
+            arquivo.close()
+            break
+        
+
+        if event.type== pygame.KEYDOWN and event.key == pygame.K_F11:
+            with open('banco_dados.txt', 'r') as file:
+                dados = eval(file.read())
+            for coordenada, nome in dados.items():
+                pygame.draw.circle(tela, branco, coordenada, 10)
+                texto = font.render(nome, True, branco)
+                tela.blit(texto, (coordenada[0] + 12, coordenada[1] + 12))
+        # Atualizar a tela
+                pygame.display.flip()
+            print('tamo tentando')
+        
         if event.type== pygame.KEYDOWN and event.key == pygame.K_F12:
+            with open('banco_dados.txt', 'w') as arquivo:
+                pass
             tela.blit(fundo,(0,0))
             estrelas=0
 
 
+
         if event.type == pygame.QUIT:
+           
             running = False
+
         elif event.type== pygame.KEYDOWN and event.key == pygame.K_ESCAPE:  
             running= False
     
