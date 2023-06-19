@@ -1,3 +1,4 @@
+
 def criarBaseDados():
     try:
         arquivo = open("banco_dados.txt","r")
@@ -10,3 +11,7 @@ def abrirCaixaPergunta():
     item= simpledialog.askstring("Space" ,  "Nome da estrela:")
     if item is None:
             return        
+
+
+
+   

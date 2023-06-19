@@ -53,7 +53,6 @@ while running:
           if item == None:
             break 
           
-
           estrelas = estrelas +1 
           coordenadas.append(coordenada)
           nomeEstrela.append(item) 
@@ -71,11 +70,10 @@ while running:
           tela.blit(texto,(coordenada))                
           if estrelas>1:
               pygame.draw.line(tela, branco, (coordenadas[-2]),(coordenadas[-1]),2)
-            
-       
-        
+              
 
         if event.type== pygame.KEYDOWN and event.key == pygame.K_F10:
+            
             dicionario = {coordenadaEnome[i]: coordenadaEnome[i+1] for i in range(0, len(coordenadaEnome), 2)}
             print(dicionario)
             arquivo = open('banco_dados.txt','a')
@@ -85,15 +83,29 @@ while running:
         
 
         if event.type== pygame.KEYDOWN and event.key == pygame.K_F11:
+            estrelas=2
             with open('banco_dados.txt', 'r') as file:
                 dados = eval(file.read())
+
             for coordenada, nome in dados.items():
-                pygame.draw.circle(tela, branco, coordenada, 10)
+                pygame.draw.circle(tela, branco, coordenada, 10) 
+                coordenadas.append(coordenada)
+
                 texto = font.render(nome, True, branco)
                 tela.blit(texto, (coordenada[0] + 12, coordenada[1] + 12))
-        # Atualizar a tela
+                
+
+
+                coordenada = list(dados.keys())
+                for i in range(len(coordenada) - 1):
+                     coordenada_atual = coordenada[i]
+                     proxima_coordenada = coordenada[i+1]
+                     pygame.draw.line(tela, branco, coordenada_atual, proxima_coordenada, 1)
+
+                
+
                 pygame.display.flip()
-            print('tamo tentando')
+            
         
         if event.type== pygame.KEYDOWN and event.key == pygame.K_F12:
             with open('banco_dados.txt', 'w') as arquivo:
