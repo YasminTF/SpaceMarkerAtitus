@@ -9,6 +9,7 @@ pygame.mixer.music.load("Space_Machine_Power.mp3")
 pygame.mixer.music.play(-1)
 
 pygame.font.init()
+###################################################
 font = pygame.font.Font(None, 30)
 
 branco= (255,255,255)
@@ -71,9 +72,11 @@ while running:
           if estrelas>1:
               pygame.draw.line(tela, branco, (coordenadas[-2]),(coordenadas[-1]),2)
               
-
+###############################################################
         if event.type== pygame.KEYDOWN and event.key == pygame.K_F10:
-            
+            with open('banco_dados.txt', 'w') as arquivo:
+                pass
+   
             dicionario = {coordenadaEnome[i]: coordenadaEnome[i+1] for i in range(0, len(coordenadaEnome), 2)}
             print(dicionario)
             arquivo = open('banco_dados.txt','a')
@@ -81,9 +84,10 @@ while running:
             arquivo.close()
             break
         
-
+####################################################
         if event.type== pygame.KEYDOWN and event.key == pygame.K_F11:
             estrelas=2
+            
             with open('banco_dados.txt', 'r') as file:
                 dados = eval(file.read())
 
@@ -93,8 +97,12 @@ while running:
 
                 texto = font.render(nome, True, branco)
                 tela.blit(texto, (coordenada[0] + 12, coordenada[1] + 12))
-                
 
+
+                # 
+                coordenadaEnome.append(coordenada)
+                coordenadaEnome.append(nome)
+                #   
 
                 coordenada = list(dados.keys())
                 for i in range(len(coordenada) - 1):
@@ -106,7 +114,7 @@ while running:
 
                 pygame.display.flip()
             
-        
+ #####################################################       
         if event.type== pygame.KEYDOWN and event.key == pygame.K_F12:
             with open('banco_dados.txt', 'w') as arquivo:
                 pass
@@ -116,10 +124,28 @@ while running:
 
 
         if event.type == pygame.QUIT:
+
+            with open('banco_dados.txt', 'w') as arquivo:
+                pass
+
+            dicionario = {coordenadaEnome[i]: coordenadaEnome[i+1] for i in range(0, len(coordenadaEnome), 2)}
+            print(dicionario)
+            arquivo = open('banco_dados.txt','a')
+            arquivo.write(str(dicionario))
+            arquivo.close()
            
             running = False
 
-        elif event.type== pygame.KEYDOWN and event.key == pygame.K_ESCAPE:  
+        elif event.type== pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
+            with open('banco_dados.txt', 'w') as arquivo:
+                pass
+            
+            dicionario = {coordenadaEnome[i]: coordenadaEnome[i+1] for i in range(0, len(coordenadaEnome), 2)}
+            print(dicionario)
+            arquivo = open('banco_dados.txt','a')
+            arquivo.write(str(dicionario))
+            arquivo.close()
+
             running= False
     
 
