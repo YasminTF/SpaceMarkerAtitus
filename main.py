@@ -117,8 +117,7 @@ while running:
     tela.blit(texto2,(10,30))
     texto3 = font.render("Pressione F12 para Deletar os Pontos", True, (branco))
     tela.blit(texto3,(10,50))
-    
-       
+          
     time.sleep(0.01)
     pygame.display.flip()
 pygame.display.update()        
