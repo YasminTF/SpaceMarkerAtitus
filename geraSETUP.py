@@ -9,7 +9,7 @@ cx_Freeze.setup(
             "packages":["pygame",],
             "include_files":["image.jpeg",
                             "logo.png",
-                            "banco_dados",
+                            "banco_dados.txt",
                             "Space_Machine_Power.mp3"]
         }
     }, executables = executables

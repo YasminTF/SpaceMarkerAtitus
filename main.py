@@ -66,31 +66,36 @@ while running:
             try:
               with open('banco_dados.txt', 'r') as file:
                 dados = eval(file.read())
-
-              for coordenada, nome in dados.items():
-               pygame.draw.circle(tela, branco, coordenada, 5) 
-               coordenadas.append(coordenada)
-               texto = font.render(nome, True, branco)
-               tela.blit(texto, (coordenada[0] + 12, coordenada[1] + 12))
-               coordenadaEnome.append(coordenada)
-               coordenadaEnome.append(nome)                   
-               coordenada = list(dados.keys())
-               for i in range(len(coordenada) - 1):
-                coordenada_atual = coordenada[i]
-                proxima_coordenada = coordenada[i+1]
-                pygame.draw.line(tela, branco, coordenada_atual, proxima_coordenada, 1)
-                pygame.display.flip()
+                
+                for coordenada, nome in dados.items():
+                    pygame.draw.circle(tela, branco, coordenada, 5) 
+                    coordenadas.append(coordenada)
+                    texto = font.render(nome, True, branco)
+                    tela.blit(texto, (coordenada[0] + 12, coordenada[1] + 12))
+                    coordenadaEnome.append(coordenada)
+                    coordenadaEnome.append(nome)                   
+                    coordenada = list(dados.keys())
+                    for i in range(len(coordenada) - 1):
+                        coordenada_atual = coordenada[i]
+                        proxima_coordenada = coordenada[i+1]
+                        pygame.draw.line(tela, branco, coordenada_atual, proxima_coordenada, 1)
+                        pygame.display.flip()
             except:
-                print("Nenhum save encontrado, por favor salve apertando a tecla F10")      
+                print("Nenhum save encontrado, por favor salve apertando a tecla F10")  
+                
+                
         if event.type== pygame.KEYDOWN and event.key == pygame.K_F12:
             with open('banco_dados.txt', 'w') as arquivo:
                 pass
+            coordenadaEnome= []
             tela.blit(fundo,(0,0))
             estrelas=0
+            
         if event.type == pygame.QUIT:
             with open('banco_dados.txt', 'w') as arquivo:
                 pass
-
+            
+               
             dicionario = {coordenadaEnome[i]: coordenadaEnome[i+1] for i in range(0, len(coordenadaEnome), 2)}
             print(dicionario)
             arquivo = open('banco_dados.txt','a')
